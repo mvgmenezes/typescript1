@@ -8,6 +8,8 @@ class NegociacaoController{
 
     private _negociacoesView = new NegociacoesView('#negociacoesView');
 
+    private _mensagemView = new MensagemView('#mensagemView');
+
     constructor(){
 
         this._inputData = <HTMLInputElement> document.querySelector('#data');
@@ -20,6 +22,7 @@ class NegociacaoController{
 
 
     adiciona(event: Event){
+
 
         //para nao recarregar a pagina ao clicar no botao submit
         event.preventDefault();
@@ -47,5 +50,9 @@ class NegociacaoController{
         console.log(negociacao.quantidade + 20);
 
         this._negociacoesView.update(this._negociacoes);
+
+        this._mensagemView.update("Negociação incluída com sucesso.");
+        
+        
     }
 }
