@@ -15,7 +15,7 @@ class NegociacaoController{
         this._inputValor = <HTMLInputElement> document.querySelector('#valor');
 
         //carregando a tabela de negociacoes 
-        this._negociacoesView.update();
+        this._negociacoesView.update(this._negociacoes);
     }
 
 
@@ -45,5 +45,7 @@ class NegociacaoController{
         })
         console.log(negociacao);
         console.log(negociacao.quantidade + 20);
+
+        this._negociacoesView.update(this._negociacoes);
     }
 }

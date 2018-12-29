@@ -6,7 +6,7 @@ class NegociacaoController {
         this._inputQuantidade = document.querySelector('#quantidade');
         this._inputValor = document.querySelector('#valor');
         //carregando a tabela de negociacoes 
-        this._negociacoesView.update();
+        this._negociacoesView.update(this._negociacoes);
     }
     adiciona(event) {
         //para nao recarregar a pagina ao clicar no botao submit
@@ -24,5 +24,6 @@ class NegociacaoController {
         });
         console.log(negociacao);
         console.log(negociacao.quantidade + 20);
+        this._negociacoesView.update(this._negociacoes);
     }
 }

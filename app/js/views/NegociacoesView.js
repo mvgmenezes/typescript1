@@ -3,10 +3,10 @@ class NegociacoesView {
         this._elemento = document.querySelector(seletor);
     }
     //metodo para renderizar no html o template na div 
-    update() {
-        this._elemento.innerHTML = this.template();
+    update(model) {
+        this._elemento.innerHTML = this.template(model);
     }
-    template() {
+    template(model) {
         return `
             <table class="table table-hover table-bordered">
                 <thead>
@@ -19,6 +19,16 @@ class NegociacoesView {
                 </thead>
 
                 <tbody>
+
+                    ${model.paraArray().map(negociacao => `
+                            <tr>
+                                <td>${negociacao.data.getDate()}/${negociacao.data.getMonth() + 1}/${negociacao.data.getFullYear()}</td>
+                                <td>${negociacao.quantidade}</td>
+                                <td>${negociacao.valor}</td>
+                                <td>${negociacao.volume}</td>
+                            </tr>    
+                        `).join('')}
+                    
                 </tbody>
 
                 <tfoot>
