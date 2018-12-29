@@ -1,9 +1,12 @@
 class NegociacaoController {
     constructor() {
         this._negociacoes = new Negociacoes();
+        this._negociacoesView = new NegociacoesView('#negociacoesView');
         this._inputData = document.querySelector('#data');
         this._inputQuantidade = document.querySelector('#quantidade');
         this._inputValor = document.querySelector('#valor');
+        //carregando a tabela de negociacoes 
+        this._negociacoesView.update();
     }
     adiciona(event) {
         //para nao recarregar a pagina ao clicar no botao submit
