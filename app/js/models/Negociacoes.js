@@ -7,6 +7,9 @@ class Negociacoes {
         this._negociacoes.push(negociacao);
     }
     paraArray() {
-        return this._negociacoes;
+        //desse jeito retorno o array original, permitndo que o programador delete o conteudo do array
+        //com isso preciso criar uma copia do array original
+        //return this._negociacoes;
+        return [].concat(this._negociacoes);
     }
 }
