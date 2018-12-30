@@ -1,3 +1,4 @@
+import { NegociacaoController } from './../controllers/NegociacaoController';
 //como estou usando o export da classe Negociacao preciso declarar aqui 
 import {Negociacao} from './Negociacao';
 
@@ -15,6 +16,7 @@ export class Negociacoes {
         //desse jeito retorno o array original, permitndo que o programador delete o conteudo do array
         //com isso preciso criar uma copia do array original
         //return this._negociacoes;
-        return [].concat(this._negociacoes);
+        //apresenta erro na compilacao por causa do strict null para resolver basta informar o tipo de array as Negociacao[]
+        return ([] as Negociacao[]).concat(this._negociacoes);
     }
 }
