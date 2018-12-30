@@ -1,11 +1,4 @@
-class NegociacoesView {
-    constructor(seletor) {
-        this._elemento = document.querySelector(seletor);
-    }
-    //metodo para renderizar no html o template na div 
-    update(model) {
-        this._elemento.innerHTML = this.template(model);
-    }
+class NegociacoesView extends View {
     template(model) {
         return `
             <table class="table table-hover table-bordered">
