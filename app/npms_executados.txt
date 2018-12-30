@@ -1,3 +1,8 @@
+
+-Usando jquery para importar os types do jquery usar:
+    npm install @types/jquery@2.0.42 --save-dev
+
+
 - adicionando o servidor 
     npm install lite-server@2.3.0 --save-dev
 - subindo o servidor

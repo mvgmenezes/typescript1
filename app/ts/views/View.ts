@@ -1,5 +1,3 @@
-//para importar os types do jquery usar: npm install @types/jquery@2.0.42 --save-dev
-
 
 //essa classe nao faz sentido ser criada diretamente pois o metodo template é necessario para a utilizacao
 //e somente quem herda pode implementar, por essa razao essa classe é abstract
