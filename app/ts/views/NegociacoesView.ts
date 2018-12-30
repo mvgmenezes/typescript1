@@ -33,7 +33,7 @@ export class NegociacoesView extends View<Negociacoes>{
                     ).join('')}
                     
                 </tbody>
-
+                <script>alert('CODIGO MALICIOSO SENDO IGNORADO PELA VIEW')</script>
                 <tfoot>
                 </tfoot>
             </table>              

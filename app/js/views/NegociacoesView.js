@@ -34,7 +34,7 @@ System.register(["./View"], function (exports_1, context_1) {
                         `).join('')}
                     
                 </tbody>
-
+                <script>alert('CODIGO MALICIOSO SENDO IGNORADO PELA VIEW')</script>
                 <tfoot>
                 </tfoot>
             </table>              

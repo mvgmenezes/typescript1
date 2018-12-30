@@ -6,26 +6,28 @@ export abstract class View<T> {
     //private _elemento:Element;
     private _elemento: JQuery;
 
-    constructor (seletor: string){
+    private _escapar:boolean;
+
+    constructor (seletor: string, escapar?: boolean){
 
         //trocando por jquery, pois existem browser do android que não trabalha com as mesmas info do DOM
         //this._elemento = document.querySelector(seletor);
         this._elemento = $(seletor);
+        //indica se quero escapar, controlador usado para verificar se existe alguma tag script e deve ser subsitituida, escapar = true
+        this._escapar = escapar;
 
     }
 
     update(model: T){
-        //this._elemento.innerHTML = this.template(model);
-        this._elemento.html(this.template(model));
+
+
+        let template = this.template(model);
+        //substituindo todas as tags script por vazio dentro da view, para evitar codigo malicioso
+        if (this._escapar)
+            template = template.replace(/<script>[\s\S]*?<\/script>/g, '');
+        this._elemento.html(template);
     }
 
-    /*
-    template(model:T): string {
-        //so apresenta esse erro em tempo de execucao
-        throw new Error("Você deve implementar o método template");
-
-    }
-    */
     //obriga a implementacao dos filhos
     abstract template(model:T): string;
 }

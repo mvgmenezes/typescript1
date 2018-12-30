@@ -15,7 +15,8 @@ export class NegociacaoController{
 
     private _negociacoes = new Negociacoes();
 
-    private _negociacoesView = new NegociacoesView('#negociacoesView');
+    //paramentro true indica que deve ignorar codigo malicioso (script) dentro do template
+    private _negociacoesView = new NegociacoesView('#negociacoesView', true);
 
     private _mensagemView = new MensagemView('#mensagemView');
 
