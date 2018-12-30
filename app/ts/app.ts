@@ -1,3 +1,5 @@
+import { NegociacaoController } from './controllers/NegociacaoController';
+
 const controller = new NegociacaoController();
 //trocando para jquery
 $('.form').submit(controller.adiciona.bind(controller));

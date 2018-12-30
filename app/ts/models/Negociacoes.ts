@@ -1,4 +1,7 @@
-class Negociacoes {
+//como estou usando o export da classe Negociacao preciso declarar aqui 
+import {Negociacao} from './Negociacao';
+
+export class Negociacoes {
 
     //private _negociacoes: Array<Negociacao> = []; 
     private _negociacoes: Negociacao[] = []; //outra forma de declarar o array de negociacao
