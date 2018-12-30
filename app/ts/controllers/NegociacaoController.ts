@@ -35,9 +35,18 @@ export class NegociacaoController{
         //para nao recarregar a pagina ao clicar no botao submit
         event.preventDefault();
 
+        let data = new Date(this._inputData.val().replace(/-/g,',')); //troca todas as posicoes (/-/g) de -, pois vem no formato 2011-12-01 e coloco como 2011,12,01 pois o new Date entende esse padrao.
+
+
+        //verifico se é sabado ou domigo
+        if(this._isDiaUtil(data)){
+
+            this._mensagemView.update('Somente negociações em dias uteis.');
+            return;
+        }
 
         const negociacao = new Negociacao(
-            new Date(this._inputData.val().replace(/-/g,',')), //troca todas as posicoes (/-/g) de -, pois vem no formato 2011-12-01 e coloco como 2011,12,01 pois o new Date entende esse padrao.
+            data, 
             parseInt(this._inputQuantidade.val()),
             parseFloat(this._inputValor.val())
         );
@@ -64,4 +73,20 @@ export class NegociacaoController{
         
         
     }
+
+    private _isDiaUtil(data: Date){
+        return data.getDay() != DiaDaSemana.Sabado && data.getDay() != DiaDaSemana.Domingo;
+    }
+}
+
+enum DiaDaSemana {
+
+    Domingo = 0, 
+    Segunda, 
+    Terca, 
+    Quarta,
+    Quinta,
+    Sexta,
+    Sabado
+
 }
