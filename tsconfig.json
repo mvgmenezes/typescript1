@@ -5,7 +5,7 @@
         "noEmitOnError": true,
         "noImplicitAny": true,
         "removeComments": true,
-        "module": "system"
+        "module": "system" /* para nao precisar incluir todos os imports no html o system.js já resolve isso*/
     },
     "include": [
         "app/ts/**/*"
