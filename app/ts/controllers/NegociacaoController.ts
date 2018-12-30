@@ -9,9 +9,9 @@ class NegociacaoController{
 
     private _negociacoes = new Negociacoes();
 
-    private _negociacoesView = new NegociacoesView('#negociacoesView');
+    private _negociacoesView = new Views.NegociacoesView('#negociacoesView');
 
-    private _mensagemView = new MensagemView('#mensagemView');
+    private _mensagemView = new Views.MensagemView('#mensagemView');
 
     constructor(){
 
