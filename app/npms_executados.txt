@@ -1,0 +1,4 @@
+- adicionando o servidor 
+    npm install lite-server@2.3.0 --save-dev
+- subindo o servidor
+    npm run server
