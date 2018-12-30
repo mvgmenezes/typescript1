@@ -2,3 +2,15 @@
     npm install lite-server@2.3.0 --save-dev
 - subindo o servidor
     npm run server
+
+
+- para startar o compilador preciso ditigar npm start em um console e para o servidor npm run server com isso fico com duas janelas de terminal
+posso unificar em uma so janela usando o concurrently
+    npm install concurrently@3.4.0 --save-dev
+
+    no Package.json
+    1- alterar a tag "start": "tsc -w" para "watch": "tsc -w",
+    2- criar uma nova tag start, contendo os dois comando de execucao, substituindo o npm run start por watch
+    3- incluir  "start": "concurrently \"npm run watch\" \"npm run server\""
+    4- executar npm run start no console agora faz o carregamento dos dois.
+
