@@ -1,6 +1,6 @@
 
 import { NegociacoesView,MensagemView } from './../views/index';
-import { Negociacoes,Negociacao } from './../models/index';
+import { Negociacoes,Negociacao, NegociacaoParcial } from './../models/index';
 
 import { domInject } from './../helpers/decarators/domInject';
 
@@ -81,6 +81,32 @@ export class NegociacaoController{
 
     private _isDiaUtil(data: Date){
         return data.getDay() != DiaDaSemana.Sabado && data.getDay() != DiaDaSemana.Domingo;
+    }
+
+    importaDados(){
+
+        function isOk(res: Response){
+            if(res.ok) {
+                return res;
+
+            }else{
+                throw new Error(res.statusText);
+            }
+        }
+
+        //acessando um endereco externo
+        fetch('http://localhost:8080/dados')
+            .then(res => isOk(res)) //verifica se o retorno foi ok, na funcao implementada
+            .then(res => res.json()) //convertendo o retorno para json
+            .then((dados: NegociacaoParcial[]) => {
+                dados
+                    .map(dado => new Negociacao(new Date(), dado.vezes, dado.montante))
+                    .forEach(negociacao => this._negociacoes.adiciona(negociacao))
+
+                this._negociacoesView.update(this._negociacoes) //atualizando a interface   
+            })//acessando os dados convertidos para JSON e transformando em lista
+            .catch(err => console.log(err.message)); //caso tenha acontecido algum erro, na funcao isOk estou lancando um throw
+            
     }
 }
 

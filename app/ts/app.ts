@@ -8,3 +8,5 @@ document
     .querySelector('.form')
     .addEventListener('submit', controller.adiciona.bind(controller));
 */
+
+$('#botao-importa').click(controller.importaDados.bind(controller));
