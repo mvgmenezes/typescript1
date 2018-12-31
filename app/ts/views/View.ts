@@ -20,13 +20,17 @@ export abstract class View<T> {
     }
 
     update(model: T){
-
+        
+        const t1 = performance.now();
 
         let template = this.template(model);
         //substituindo todas as tags script por vazio dentro da view, para evitar codigo malicioso
         if (this._escapar)
             template = template.replace(/<script>[\s\S]*?<\/script>/g, '');
         this._elemento.html(template);
+
+        const t2 = performance.now();
+        console.log(`o tempo de execucao de update é de ${t2-t1} ms`);
     }
 
     //obriga a implementacao dos filhos
