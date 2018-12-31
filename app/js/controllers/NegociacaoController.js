@@ -7,7 +7,7 @@ System.register(["./../views/index", "./../models/index", "./../helpers/decarato
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, domInject_1, NegociacaoController, DiaDaSemana;
+    var index_1, index_2, domInject_1, timer, NegociacaoController, DiaDaSemana;
     return {
         setters: [
             function (index_1_1) {
@@ -21,6 +21,7 @@ System.register(["./../views/index", "./../models/index", "./../helpers/decarato
             }
         ],
         execute: function () {
+            timer = 0;
             NegociacaoController = class NegociacaoController {
                 constructor() {
                     this._negociacoes = new index_2.Negociacoes();
@@ -60,16 +61,19 @@ System.register(["./../views/index", "./../models/index", "./../helpers/decarato
                             throw new Error(res.statusText);
                         }
                     }
-                    fetch('http://localhost:8080/dados')
-                        .then(res => isOk(res))
-                        .then(res => res.json())
-                        .then((dados) => {
-                        dados
-                            .map(dado => new index_2.Negociacao(new Date(), dado.vezes, dado.montante))
-                            .forEach(negociacao => this._negociacoes.adiciona(negociacao));
-                        this._negociacoesView.update(this._negociacoes);
-                    })
-                        .catch(err => console.log(err.message));
+                    clearTimeout(timer);
+                    timer = setTimeout(() => {
+                        fetch('http://localhost:8080/dados')
+                            .then(res => isOk(res))
+                            .then(res => res.json())
+                            .then((dados) => {
+                            dados
+                                .map(dado => new index_2.Negociacao(new Date(), dado.vezes, dado.montante))
+                                .forEach(negociacao => this._negociacoes.adiciona(negociacao));
+                            this._negociacoesView.update(this._negociacoes);
+                        })
+                            .catch(err => console.log(err.message));
+                    }, 500);
                 }
             };
             __decorate([

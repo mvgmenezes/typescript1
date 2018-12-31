@@ -4,6 +4,9 @@ import { Negociacoes,Negociacao, NegociacaoParcial } from './../models/index';
 
 import { domInject } from './../helpers/decarators/domInject';
 
+//implementando um padrao de projeto para que caso o usuario clique em importar espere meio segundo para importar para nao criar requisicoes desnecessarias
+let timer = 0;
+
 export class NegociacaoController{
 
     @domInject('#data')
@@ -94,8 +97,12 @@ export class NegociacaoController{
             }
         }
 
-        //acessando um endereco externo
-        fetch('http://localhost:8080/dados')
+        //caso tenha um timer rodando vou limpar o timeout e criar novamente
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+
+            //acessando um endereco externo
+            fetch('http://localhost:8080/dados')
             .then(res => isOk(res)) //verifica se o retorno foi ok, na funcao implementada
             .then(res => res.json()) //convertendo o retorno para json
             .then((dados: NegociacaoParcial[]) => {
@@ -107,6 +114,13 @@ export class NegociacaoController{
             })//acessando os dados convertidos para JSON e transformando em lista
             .catch(err => console.log(err.message)); //caso tenha acontecido algum erro, na funcao isOk estou lancando um throw
             
+
+
+            
+        }, 500); //so executa apos meio segundo
+
+
+        
     }
 }
 
