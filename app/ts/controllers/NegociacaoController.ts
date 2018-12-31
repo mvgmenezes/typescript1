@@ -1,8 +1,11 @@
 
+
+
 import { NegociacoesView,MensagemView } from './../views/index';
 import { Negociacoes,Negociacao, NegociacaoParcial } from './../models/index';
 
 import { domInject, throttle } from './../helpers/decarators/index';
+import { NegociacaoService } from './../service/index';
 
 
 export class NegociacaoController{
@@ -20,6 +23,8 @@ export class NegociacaoController{
     private _negociacoesView = new NegociacoesView('#negociacoesView', true);
 
     private _mensagemView = new MensagemView('#mensagemView');
+
+    private _service = new NegociacaoService();
 
     constructor(){
 
@@ -96,18 +101,11 @@ export class NegociacaoController{
             }
         }
 
-        //acessando um endereco externo
-        fetch('http://localhost:8080/dados')
-            .then(res => isOk(res)) //verifica se o retorno foi ok, na funcao implementada
-            .then(res => res.json()) //convertendo o retorno para json
-            .then((dados: NegociacaoParcial[]) => {
-                dados
-                    .map(dado => new Negociacao(new Date(), dado.vezes, dado.montante))
-                    .forEach(negociacao => this._negociacoes.adiciona(negociacao))
-
-                this._negociacoesView.update(this._negociacoes) //atualizando a interface   
-            })//acessando os dados convertidos para JSON e transformando em lista
-            .catch(err => console.log(err.message)); //caso tenha acontecido algum erro, na funcao isOk estou lancando um throw
+       this._service.obterNegociacoes(isOk)
+        .then(negociacoes => {
+            negociacoes.forEach(negociacao => this._negociacoes.adiciona(negociacao));
+            this._negociacoesView.update(this._negociacoes); 
+        });
             
     }
 }
