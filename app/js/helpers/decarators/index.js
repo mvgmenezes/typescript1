@@ -1,4 +1,4 @@
-System.register(["./TempoDeExecucao"], function (exports_1, context_1) {
+System.register(["./TempoDeExecucao", "./domInject"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -12,6 +12,9 @@ System.register(["./TempoDeExecucao"], function (exports_1, context_1) {
         setters: [
             function (TempoDeExecucao_1_1) {
                 exportStar_1(TempoDeExecucao_1_1);
+            },
+            function (domInject_1_1) {
+                exportStar_1(domInject_1_1);
             }
         ],
         execute: function () {

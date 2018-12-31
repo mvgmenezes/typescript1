@@ -2,13 +2,15 @@
 import { NegociacoesView,MensagemView } from './../views/index';
 import { Negociacoes,Negociacao } from './../models/index';
 
-import {logarTempoDeExecucao} from '../helpers/decarators/index';
-
+import { domInject } from './../helpers/decarators/domInject';
 
 export class NegociacaoController{
 
+    @domInject('#data')
     private _inputData: JQuery;
+    @domInject('#quantidade')
     private _inputQuantidade: JQuery;
+    @domInject('#valor')
     private _inputValor: JQuery;
 
     private _negociacoes = new Negociacoes();
@@ -20,16 +22,19 @@ export class NegociacaoController{
 
     constructor(){
 
-
-        this._inputData = $('#data');
-        this._inputQuantidade = $('#quantidade');
-        this._inputValor = $('#valor');
+        // Utilizando o Lazy loading para recuperar os elementos do DOM, ao colocar no cosntrutor o resgate desses elementos do DOM, as vezes
+        //com uma grande quantidade de elementos o esforço computacional pode ser desnecessario pois nem sempre todos os elementos buscados
+        //serao utilizados pela a aplicacao para um determinado fim, para conseguir melhorar isso é utiliazdo o Lazy Loading, que somente busca no DOM
+        //o elemento necessário para ser trabahado. Criei um Decorator @domInject para realizar essa busca.
+        //this._inputData = $('#data');
+        //this._inputQuantidade = $('#quantidade');
+        //this._inputValor = $('#valor');
 
         //carregando a tabela de negociacoes 
         this._negociacoesView.update(this._negociacoes);
     }
 
-    @logarTempoDeExecucao()
+   
     adiciona(event: Event){
         
         //para nao recarregar a pagina ao clicar no botao submit
