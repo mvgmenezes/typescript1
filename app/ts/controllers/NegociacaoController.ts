@@ -2,6 +2,7 @@
 import { NegociacoesView,MensagemView } from './../views/index';
 import { Negociacoes,Negociacao } from './../models/index';
 
+import {logarTempoDeExecucao} from '../helpers/decarators/index';
 
 
 export class NegociacaoController{
@@ -28,11 +29,9 @@ export class NegociacaoController{
         this._negociacoesView.update(this._negociacoes);
     }
 
-
+    @logarTempoDeExecucao()
     adiciona(event: Event){
-
-        const t1 = performance.now();
-
+        
         //para nao recarregar a pagina ao clicar no botao submit
         event.preventDefault();
 
@@ -72,8 +71,7 @@ export class NegociacaoController{
 
         this._mensagemView.update("Negociação incluída com sucesso.");
         
-        const t2 = performance.now();
-        console.log(`o tempo de execucao de adiciona é de ${t2-t1} ms`);
+
     }
 
     private _isDiaUtil(data: Date){

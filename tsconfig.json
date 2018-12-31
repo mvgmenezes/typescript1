@@ -6,7 +6,8 @@
         "noImplicitAny": true, /* obriga a definicao da variavel ao inves de assumir any */
         "removeComments": true,/* remove os comentarios para quando for gerado os js, assim em producao nao apresenta o erro */
         "module": "system", /* para nao precisar incluir todos os imports no html o system.js já resolve isso*/
-        "strictNullChecks": true /* nao permite atribuir null ou undefined a variaives diferentes do tipo null*/
+        "strictNullChecks": true, /* nao permite atribuir null ou undefined a variaives diferentes do tipo null*/
+        "experimentalDecorators": true /* utilizar o decorator, parecido com anotation */
     },
     "include": [
         "app/ts/**/*"
